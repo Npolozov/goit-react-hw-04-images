@@ -16,14 +16,10 @@ export const App = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handlelFormSubmit = image => {
-    if (!image) {
-      toast.error('Ввдедіть дані для пошуку!!!');
-      return;
-    }
     setPage(1);
     setImage(image);
     setError(null);
-    setPhoto('');
+    setPhoto([]);
     setIsLoading(false);
   };
 
@@ -32,12 +28,15 @@ export const App = () => {
   };
 
   useEffect(() => {
+    if (image === '') {
+      return;
+    }
     async function getImage() {
       try {
         setIsLoading(true);
         const photo = await imageByName(image, page);
-        console.log(image);
-        console.log(page);
+        console.log(photo);
+
         if (photo.length === 0) {
           toast.error(
             'Sorry, there are no images matching your search query. Please try again.'

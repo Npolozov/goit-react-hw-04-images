@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://pixabay.com/api/';
+axios.defaults.baseURL = 'https://pixabay.com/api';
 
 export const imageByName = async (query, page) => {
   const response = await axios.get(
@@ -8,5 +8,6 @@ export const imageByName = async (query, page) => {
 `
   );
   console.log(response.data.hits);
+  console.log(query);
   return response.data.hits;
 };

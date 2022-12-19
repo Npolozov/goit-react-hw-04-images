@@ -7,9 +7,11 @@ import {
   Input,
 } from './Searchbar.styled';
 import { FiSearch } from 'react-icons/fi';
+import { ToastContainer, toast } from 'react-toastify';
 
 export const Searchbar = ({ onSubmit }) => {
   const [image, setImage] = useState('');
+  console.log(image);
 
   const handelFormChange = event => {
     setImage(event.currentTarget.value.toLowerCase());
@@ -17,6 +19,9 @@ export const Searchbar = ({ onSubmit }) => {
 
   const handelSubmit = e => {
     e.preventDefault();
+    if (image.trim() === '') {
+      toast.error('Введите название картинки');
+    }
     onSubmit(image);
     setImage('');
   };
@@ -38,6 +43,7 @@ export const Searchbar = ({ onSubmit }) => {
           placeholder="Search images and photos"
         />
       </SearchForm>
+      <ToastContainer autoClose={2000} position="top-right" />
     </Header>
   );
 };
