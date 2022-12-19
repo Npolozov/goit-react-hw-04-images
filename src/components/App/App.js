@@ -36,6 +36,8 @@ export const App = () => {
       try {
         setIsLoading(true);
         const photo = await imageByName(image, page);
+        console.log(image);
+        console.log(page);
         if (photo.length === 0) {
           toast.error(
             'Sorry, there are no images matching your search query. Please try again.'
